@@ -9,7 +9,7 @@ choice = st.sidebar.radio(
     [
         "Unit I: Introduction to Python and the different data types",
         "Unit II: Control Structures & Exception Handling",
-        "Unit III: Functions, Scope & Recursion",
+        "Unit III: Functions, Scope of variables & Recursion",
         "Unit IV: Introduction to NumPy",
         "Interactive Syllabus Quiz"
     ]
@@ -262,5 +262,83 @@ elif choice == "Unit II: Control Structures & Exception Handling":
             'try:\n    import non_existent_library\nexcept ModuleNotFoundError:\n    print("Module is not installed!")',
             'try:\n    import magic_math\nexcept ModuleNotFoundError:\n    print("Caught ModuleNotFoundError: No module named \'magic_math\'.")',
             "err_import"
+        )
+elif choice == "Unit III: Functions, Scope of variables & Recursion":
+    st.header("Unit III: Functions, Scope of variables & Recursion")
+    st.write("""
+    * **Function:** A self-contained, reusable block of organized code that performs a specific task. Functions help break large programs into smaller, manageable modules (avoiding code repetition) and only run when called.
+    * **Parameter vs. Argument:** A **parameter** is the variable listed inside the parentheses in the function definition, whereas an **argument** is the actual value sent to the function when it is called.
+    * **Variable Scope:** The region or part of a program where a variable is recognized and can be accessed. Python resolves variable names using the **LEGB Rule** (*Local → Enclosing → Global → Built-in*).
+    * **Recursion:** A programming technique in which a function calls itself directly or indirectly to solve a smaller instance of the same problem until it reaches a stopping condition called the **base case**.
+    """)
+    st.markdown("---")
+    tab1, tab2, tab3 = st.tabs([
+        "1. Functions & Arguments",
+        "2. Variable Scope",
+        "3. Recursion"
+    ])
+    with tab1:
+        learn_and_code(
+            "Defining & Calling a Function (def & return)",
+            "A function is defined using the `def` keyword and can send a result back to the caller using `return`.",
+            'def greet(name):\n    return f"Hello, {name}!"\n\nprint(greet("Asha"))',
+            'def calculate_area(length, width):\n    return length * width\n\narea = calculate_area(5, 4)\nprint("Area:", area)',
+            "u3_def_return"
+        )
+
+        learn_and_code(
+            "Default & Keyword Arguments",
+            "Parameters can have default values if no argument is passed, and keyword arguments let you pass values by parameter name.",
+            'def student_info(name, course="B.Sc. LL.B."):\n    print(f"{name} is enrolled in {course}")\n\nstudent_info("Riya")\nstudent_info(course="Data Science", name="Kabir")',
+            'def power(base, exponent=2):\n    return base ** exponent\n\nprint("Default square:", power(5))\nprint("Cube:", power(base=5, exponent=3))',
+            "u3_args"
+        )
+
+        learn_and_code(
+            "Returning Multiple Values (String Analyzer)",
+            "A Python function can return multiple values separated by commas (packed as a tuple).",
+            'def analyze_text(text):\n    chars = len(text)\n    words = len(text.split())\n    return chars, words\n\nc, w = analyze_text("Python is fun")\nprint("Characters:", c, "| Words:", w)',
+            'def analyze_text(text):\n    char_count = len(text)\n    word_count = len(text.split())\n    vowels = "aeiouAEIOU"\n    vowel_count = sum(1 for ch in text if ch in vowels)\n    return char_count, word_count, vowel_count\n\nsample = "Python programming is structured."\nc, w, v = analyze_text(sample)\nprint(f"Chars: {c}, Words: {w}, Vowels: {v}")',
+            "u3_string_func"
+        )
+
+        learn_and_code(
+            "Lambda (Anonymous) Functions",
+            "A `lambda` function is a small, single-expression anonymous function written in one line without `def`.",
+            'square = lambda x: x * x\nprint(square(6))',
+            'add = lambda a, b: a + b\nprint("Sum:", add(12, 8))',
+            "u3_lambda"
+        )
+    with tab2:
+        learn_and_code(
+            "Local vs. Global Scope",
+            "A **local** variable is created inside a function and exists only there, while a **global** variable is defined outside all functions and can be read anywhere.",
+            'x = "Global Variable"\n\ndef scope_demo():\n    x = "Local Variable"\n    print("Inside function:", x)\n\nscope_demo()\nprint("Outside function:", x)',
+            'msg = "Global Hello"\n\ndef test_scope():\n    msg = "Local Hi"\n    print("Inside:", msg)\n\ntest_scope()\nprint("Outside:", msg)',
+            "u3_local_global"
+        )
+
+        learn_and_code(
+            "Modifying Global Variables (global keyword)",
+            "To modify a global variable inside a function, you must explicitly declare it using the `global` keyword.",
+            'counter = 0\n\ndef increment():\n    global counter\n    counter += 1\n\nincrement()\nincrement()\nprint("Counter:", counter)',
+            'score = 10\n\ndef add_bonus():\n    global score\n    score += 5\n\nadd_bonus()\nprint("Updated Score:", score)',
+            "u3_global_kw"
+        )
+    with tab3:
+        learn_and_code(
+            "Recursive Factorial (Base Case & Recursive Step)",
+            "Recursion occurs when a function calls itself. Every recursive function needs a **base case** to stop calling itself and prevent infinite recursion.",
+            'def factorial(n):\n    if n <= 1:  # Base case\n        return 1\n    return n * factorial(n - 1)  # Recursive step\n\nprint("5! =", factorial(5))',
+            'def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\n\nnum = 6\nprint(f"Factorial of {num} is:", factorial(num))',
+            "u3_rec_fact"
+        )
+
+        learn_and_code(
+            "Recursive Fibonacci Sequence",
+            "In the Fibonacci sequence, each number is the sum of the two preceding numbers (`fib(n) = fib(n-1) + fib(n-2)`).",
+            'def fib(n):\n    if n <= 1:\n        return n\n    return fib(n - 1) + fib(n - 2)\n\nprint([fib(i) for i in range(6)])',
+            'def fib(n):\n    if n <= 1:\n        return n\n    return fib(n - 1) + fib(n - 2)\n\nfor i in range(7):\n    print(f"fib({i}) = {fib(i)}")',
+            "u3_rec_fib"
         )
 
