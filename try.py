@@ -148,7 +148,7 @@ elif choice == "Unit II: Control Structures & Exception Handling":
 
     st.markdown("---")
     tab1, tab2 = st.tabs([
-        "Control Structures (Conditionals & Loops)",
+        "Control Structures",
         "Exception Handling"
     ])
     with tab1:
@@ -181,25 +181,86 @@ elif choice == "Unit II: Control Structures & Exception Handling":
             "break_continue"
         )
     with tab2:
+        st.markdown("#### Exception Handling Structure (`try` / `except` / `else` / `finally`)")
         learn_and_code(
-            "try and except Blocks",
-            "Code that might raise an error goes inside `try`, and the fallback response goes inside `except` so the program does not crash.",
-            'try:\n    result = 10 / 0\n    print(result)\nexcept ZeroDivisionError:\n    print("Error: Cannot divide by zero!")',
-            'try:\n    a = 10\n    b = 0\n    print("Result:", a / b)\nexcept ZeroDivisionError:\n    print("Caught ZeroDivisionError: Division by zero is not allowed.")',
-            "try_except"
-        )
-        learn_and_code(
-            "Handling Multiple Exceptions (ValueError & ZeroDivisionError)",
-            "You can attach multiple `except` blocks to catch different types of runtime errors separately.",
-            'try:\n    num = int("abc")\n    print(100 / num)\nexcept ValueError:\n    print("Invalid number format!")\nexcept ZeroDivisionError:\n    print("Cannot divide by zero!")',
-            'user_input = "twenty"  # Try changing this to "0" or "5"\ntry:\n    val = int(user_input)\n    print("100 divided by input:", 100 / val)\nexcept ValueError:\n    print("ValueError: Please provide digits only.")\nexcept ZeroDivisionError:\n    print("ZeroDivisionError: Cannot divide by zero.")',
-            "multi_except"
-        )
-        learn_and_code(
-            "else and finally Blocks",
-            "`else` runs only if no exception occurred in `try`, while `finally` always runs whether an error happened or not.",
+            "How try, except, else & finally Work Together",
+            "`try` tests risky code, `except` catches errors, `else` runs only if no error occurred, and `finally` always executes at the end.",
             'try:\n    x = 10 / 2\nexcept ZeroDivisionError:\n    print("Error!")\nelse:\n    print("Success:", x)\nfinally:\n    print("Execution finished.")',
             'try:\n    res = 20 / 4\nexcept ZeroDivisionError:\n    print("Division failed")\nelse:\n    print("Division succeeded:", res)\nfinally:\n    print("Cleanup complete.")',
-            "else_finally"
+            "try_else_finally"
         )
-        
+
+        st.markdown("#### Common Built-in Python Exceptions")
+
+        learn_and_code(
+            "1. ZeroDivisionError",
+            "Raised when a number is divided or modulo-divided by zero (`0`).",
+            'try:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print("Cannot divide by zero!")',
+            'num = 50\ndenom = 0\ntry:\n    print(num / denom)\nexcept ZeroDivisionError:\n    print("Caught ZeroDivisionError: Denominator cannot be 0.")',
+            "err_zero"
+        )
+
+        learn_and_code(
+            "2. ValueError",
+            "Raised when a function receives an argument of the right data type, but an inappropriate value (e.g., converting `'abc'` to `int`).",
+            'try:\n    age = int("twenty")\nexcept ValueError:\n    print("Invalid value! Enter digits only.")',
+            'text = "hello"\ntry:\n    number = int(text)\n    print(number)\nexcept ValueError:\n    print("Caught ValueError: Could not convert text to integer.")',
+            "err_value"
+        )
+
+        learn_and_code(
+            "3. TypeError",
+            "Raised when an operation or function is applied to an object of an incompatible type (e.g., adding a `str` and an `int`).",
+            'try:\n    print("Age: " + 18)\nexcept TypeError:\n    print("Cannot add string and integer!")',
+            'try:\n    total = "100" + 50\n    print(total)\nexcept TypeError:\n    print("Caught TypeError: Convert int to str using str(50) first.")',
+            "err_type"
+        )
+
+        learn_and_code(
+            "4. IndexError",
+            "Raised when trying to access an index that is out of range in a sequence like a `list`, `tuple`, or `str`.",
+            'items = ["pen", "book"]\ntry:\n    print(items[5])\nexcept IndexError:\n    print("Index out of range!")',
+            'colors = ["red", "green", "blue"]\ntry:\n    print(colors[4])\nexcept IndexError:\n    print("Caught IndexError: List only has 3 items (indices 0 to 2).")',
+            "err_index"
+        )
+
+        learn_and_code(
+            "5. KeyError",
+            "Raised when trying to access a dictionary key that does not exist.",
+            'student = {"name": "Asha"}\ntry:\n    print(student["grade"])\nexcept KeyError:\n    print("Key not found in dictionary!")',
+            'marks = {"Math": 90, "Python": 95}\ntry:\n    print(marks["History"])\nexcept KeyError:\n    print("Caught KeyError: \'History\' is not a key in marks.")',
+            "err_key"
+        )
+
+        learn_and_code(
+            "6. NameError",
+            "Raised when trying to use a variable or function name that has not been defined yet.",
+            'try:\n    print(undeclared_var)\nexcept NameError:\n    print("Variable is not defined!")',
+            'try:\n    print(score)\nexcept NameError:\n    print("Caught NameError: Define \'score\' before printing it.")',
+            "err_name"
+        )
+
+        learn_and_code(
+            "7. AttributeError",
+            "Raised when an invalid attribute or method is accessed on an object (e.g., calling `.append()` on an integer).",
+            'num = 10\ntry:\n    num.append(5)\nexcept AttributeError:\n    print("Integers do not have an append() method!")',
+            'word = "python"\ntry:\n    word.push("s")\nexcept AttributeError:\n    print("Caught AttributeError: str object has no attribute \'push\'.")',
+            "err_attr"
+        )
+
+        learn_and_code(
+            "8. FileNotFoundError",
+            "Raised when trying to open a file that does not exist in the specified path.",
+            'try:\n    f = open("missing_file.txt", "r")\nexcept FileNotFoundError:\n    print("File does not exist!")',
+            'try:\n    with open("notes_2026.txt", "r") as file:\n        print(file.read())\nexcept FileNotFoundError:\n    print("Caught FileNotFoundError: Check the filename or path.")',
+            "err_file"
+        )
+
+        learn_and_code(
+            "9. ModuleNotFoundError (ImportError)",
+            "Raised when Python cannot find the module you are trying to `import`.",
+            'try:\n    import non_existent_library\nexcept ModuleNotFoundError:\n    print("Module is not installed!")',
+            'try:\n    import magic_math\nexcept ModuleNotFoundError:\n    print("Caught ModuleNotFoundError: No module named \'magic_math\'.")',
+            "err_import"
+        )
+
