@@ -165,3 +165,4 @@ if choice == "Unit I: Introduction & Data Types":
             'ba = bytearray(b"ABC")\nba[0] = 90  # ASCII for Z\nprint(ba)',
             'ba = bytearray(b"cat")\nba[0] = 98  # ASCII for b\nprint("Modified:", ba)\nprint(type(ba))',
             "bytearray"
+        )
