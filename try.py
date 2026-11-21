@@ -30,7 +30,7 @@ def learn_and_code(title, definition, example_code, starter_code, key_id):
                 st.code(res if res else "(Executed with no print output)", language="text")
             except Exception as e:
                 st.error(f"{type(e).__name__}: {e}")
-if choice == "Introduction to Python and the different data types":
+if choice == "Unit I: Introduction to Python and the different data types":
     st.header("Introduction to Python and the different data types")
     st.subheader("1. What is Python?")
     st.write(
