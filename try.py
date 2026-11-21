@@ -341,4 +341,75 @@ elif choice == "Unit III: Functions, Scope of variables & Recursion":
             'def fib(n):\n    if n <= 1:\n        return n\n    return fib(n - 1) + fib(n - 2)\n\nfor i in range(7):\n    print(f"fib({i}) = {fib(i)}")',
             "u3_rec_fib"
         )
+elif choice == "Unit IV: Introduction to NumPy":
+    st.header("Unit IV: Numerical Computing with NumPy")
 
+    # 1. Core Definitions Overview
+    st.subheader("1. What is NumPy? (Core Concepts & Definitions)")
+    st.markdown("""
+    * **NumPy (Numerical Python):** An open-source Python library used for scientific and numerical computing. It provides support for large, multi-dimensional arrays and matrices along with high-level mathematical functions.
+    * **NumPy Array (`ndarray`):** The core data structure of NumPy—an N-dimensional, homogeneous grid of values (all elements must be of the same data type) stored in contiguous memory, making it much faster and more memory-efficient than standard Python lists.
+    * **Vectorization:** The ability to perform element-wise arithmetic operations directly on entire arrays without writing explicit `for` loops.
+    * **Shape & Dimensions (`ndim` / `shape`):** **Dimensions (`ndim`)** indicate the number of axes (e.g., 1D vector, 2D matrix), while **shape** is a tuple showing the exact number of elements along each axis (e.g., `(2, 3)` means 2 rows and 3 columns).
+    """)
+
+    st.markdown("---")
+
+    # 2. Interactive Tabs (Definitions + Examples + Live Coding)
+    st.subheader("2. Explore NumPy & Practice Coding")
+    tab1, tab2 = st.tabs([
+        "Creating & Inspecting Arrays",
+        "Vectorized Math & Statistics"
+    ])
+
+    # --- TAB 1: CREATING & INSPECTING ARRAYS ---
+    with tab1:
+        learn_and_code(
+            "Creating 1D & 2D Arrays (np.array)",
+            "Use `np.array()` to convert a Python list into a 1D array or a list of lists into a 2D matrix.",
+            'import numpy as np\n\narr_1d = np.array([10, 20, 30])\narr_2d = np.array([[1, 2, 3], [4, 5, 6]])\nprint("1D:", arr_1d)\nprint("2D:\\n", arr_2d)',
+            'import numpy as np\n\nscores = np.array([85, 90, 78, 92])\nmatrix = np.array([[10, 20], [30, 40]])\nprint("Scores:", scores)\nprint("Matrix:\\n", matrix)',
+            "u4_create"
+        )
+
+        learn_and_code(
+            "Built-in Array Generators (zeros, ones, arange)",
+            "NumPy includes helper functions to generate arrays automatically: `np.zeros()` fills with `0`s, `np.ones()` fills with `1`s, and `np.arange(start, stop, step)` works like Python's `range()`.",
+            'import numpy as np\n\nprint("Zeros:", np.zeros(4))\nprint("Range:", np.arange(0, 10, 2))',
+            'import numpy as np\n\nones_arr = np.ones((2, 3))\nseq_arr = np.arange(1, 11, 2)\nprint("2x3 Ones:\\n", ones_arr)\nprint("Odd sequence:", seq_arr)',
+            "u4_generators"
+        )
+
+        learn_and_code(
+            "Array Attributes (ndim, shape, size, dtype)",
+            "Inspect an array's structure using `.ndim` (number of dimensions), `.shape` (rows, columns), `.size` (total elements), and `.dtype` (data type).",
+            'import numpy as np\n\narr = np.array([[10, 20, 30], [40, 50, 60]])\nprint("Dimensions:", arr.ndim)\nprint("Shape:", arr.shape)\nprint("Data Type:", arr.dtype)',
+            'import numpy as np\n\ndata = np.array([[5, 10], [15, 20], [25, 30]])\nprint("ndim:", data.ndim)\nprint("shape:", data.shape)\nprint("size:", data.size)',
+            "u4_attrs"
+        )
+
+        learn_and_code(
+            "Indexing & Slicing Arrays",
+            "Just like lists, NumPy arrays use zero-based indexing (`arr[0]`) and slicing (`arr[start:stop]`). For 2D arrays, use `arr[row, col]`.",
+            'import numpy as np\n\narr = np.array([10, 20, 30, 40, 50])\nprint("First:", arr[0])\nprint("Slice [1:4]:", arr[1:4])',
+            'import numpy as np\n\nmat = np.array([[11, 12, 13], [21, 22, 23]])\nprint("Row 0, Col 2:", mat[0, 2])\nprint("Second row:", mat[1, :])',
+            "u4_slice"
+        )
+
+    # --- TAB 2: VECTORIZED MATH & STATISTICS ---
+    with tab2:
+        learn_and_code(
+            "Vectorized Arithmetic Operations",
+            "Mathematical operators (`+`, `-`, `*`, `/`, `**`) apply automatically to every element in the array at once—no loops required.",
+            'import numpy as np\n\narr = np.array([10, 20, 30, 40])\nprint("Multiplied by 2:", arr * 2)\nprint("Squared:", arr ** 2)',
+            'import numpy as np\n\nprices = np.array([100, 250, 400])\ndiscounted = prices * 0.90  # 10% off every item\nprint("Original:", prices)\nprint("After 10% discount:", discounted)',
+            "u4_vec_math"
+        )
+
+        learn_and_code(
+            "Statistical Functions (sum, mean, median, std, max, min)",
+            "NumPy provides fast built-in methods to compute descriptive statistics across an array.",
+            'import numpy as np\n\nmarks = np.array([72, 85, 90, 68, 95])\nprint("Mean:", np.mean(marks))\nprint("Median:", np.median(marks))\nprint("Max:", np.max(marks))',
+            'import numpy as np\n\ndata = np.array([12, 15, 18, 22, 30])\nprint("Sum:", np.sum(data))\nprint("Mean:", np.mean(data))\nprint("Std Dev:", round(np.std(data), 2))',
+            "u4_stats"
+        )
