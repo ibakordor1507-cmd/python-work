@@ -8,7 +8,7 @@ choice = st.sidebar.radio(
     "Choose a Module:",
     [
         "Unit I: Introduction to Python and the different data types",
-        "Unit II: Control & Logic",
+        "Unit II: Control Structures & Exception Handling",
         "Unit III: Functions, Scope & Recursion",
         "Unit IV: Introduction to NumPy",
         "Interactive Syllabus Quiz"
@@ -139,10 +139,7 @@ if choice == "Unit I: Introduction to Python and the different data types":
             'ba = bytearray(b"cat")\nba[0] = 98  # ASCII for b\nprint("Modified:", ba)\nprint(type(ba))',
             "bytearray"
         )
-# ---------------------------------------------------------
-# UNIT II: Control Structures & Exception Handling
-# ---------------------------------------------------------
-elif choice == "Unit II: Control & Logic":
+elif choice == "Unit II: Control Structures & Exception Handling":
     st.header("Unit II: Control Structures & Exception Handling")
     st.write(
         "Control structures decide the flow of execution in a Python program, while exception handling "
@@ -154,8 +151,6 @@ elif choice == "Unit II: Control & Logic":
         "Control Structures (Conditionals & Loops)",
         "Exception Handling"
     ])
-
-    # --- TAB 1: CONTROL STRUCTURES ---
     with tab1:
         learn_and_code(
             "Conditional Statements (if / elif / else)",
@@ -185,8 +180,6 @@ elif choice == "Unit II: Control & Logic":
             'for n in range(1, 8):\n    if n == 4:\n        continue\n    if n == 6:\n        break\n    print("Number:", n)',
             "break_continue"
         )
-
-    # --- TAB 2: EXCEPTION HANDLING ---
     with tab2:
         learn_and_code(
             "try and except Blocks",
@@ -209,3 +202,4 @@ elif choice == "Unit II: Control & Logic":
             'try:\n    res = 20 / 4\nexcept ZeroDivisionError:\n    print("Division failed")\nelse:\n    print("Division succeeded:", res)\nfinally:\n    print("Cleanup complete.")',
             "else_finally"
         )
+        
