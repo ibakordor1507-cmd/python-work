@@ -14,7 +14,9 @@ choice = st.sidebar.radio(
         "Interactive Syllabus Quiz"
     ]
 )
-def learn_and_code(title, definition, example_code, key_id):
+def learn_and_code(title, definition, example_code, key_id=None):
+    if key_id is None:
+        key_id = title
     with st.expander(f"📘 {title}", expanded=False):
         st.write(definition)
         st.markdown("**Example:**")
@@ -196,7 +198,7 @@ elif choice == "Unit II: Control structure and exceptional handling":
             "Raised when Python cannot find the module you are trying to `import`.",
             'try:\n    import non_existent_library\nexcept ModuleNotFoundError:\n    print("Module is not installed!")',
         )
-elif choice == "Unit III: Functions, Scope of variables & Recursion":
+elif choice == "Unit III: Functions, Scope of variables Recursion":
     st.header("Unit III: Modular Programming — Functions, Scope of variables & Recursion")
     st.subheader("1. Definitions")
     st.markdown("""
@@ -337,3 +339,15 @@ elif choice == "Interactive Syllabus Quiz":
             if q3 == "A base case":
                 score += 1
                 st.success("Q3: Correct! A base case stops further recursive calls.")
+            else:
+                st.error("Q3: Incorrect. Without a base case, recursion runs until a `RecursionError` occurs.")
+
+            if q4 == "NumPy":
+                score += 1
+                st.success("Q4: Correct! NumPy is built for fast multi-dimensional arrays.")
+            else:
+                st.error("Q4: Incorrect. The correct library is `NumPy`.")
+
+            st.subheader(f"Final Score: {score} / 4")
+            if score == 4:
+                st.balloons()
